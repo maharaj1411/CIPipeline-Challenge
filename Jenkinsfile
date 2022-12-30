@@ -43,7 +43,24 @@ pipeline{
                 waitForQualityGate abortPipeline: true
             }
         }*/
+     stage('Deploy to artifactory'){
+        steps{
+        rtUpload(
+         serverId : 'server-jfrog',
+         spec :'''{
+           "files" :[
+           {
+           "pattern":"target/*.jar",
+           "target":"sample-maven-repo"
+           }
+           ]
+         }''',
+         
+      )
+      }
+     }
     }
+   
     post {  
          always {  
              echo 'This will always run'  
