@@ -8,9 +8,9 @@ pipeline{
   stages {
       stage("Maven Build"){
           steps{
-             script{
+            /* script{
                 last_started=env.STAGE_NAME
-               }
+               } */
               sh 'mvn -B -DskipTests clean package'
              
           }
@@ -18,9 +18,6 @@ pipeline{
       }
       stage('Maven Test'){
             steps{
-               script{
-                  last_started=env.STAGE_NAME
-            }
                 sh 'mvn test'
             }
             post{
